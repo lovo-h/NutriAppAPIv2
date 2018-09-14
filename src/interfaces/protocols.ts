@@ -1,5 +1,19 @@
+import {Response} from "express";
 
-interface HandlerDB {
+
+export interface HandlerDB {
     // TODO: maybe add params && callback function?
-    Query(queryStr: string): void
+    query(queryStr: string): void;
+}
+
+export interface InteractorFood {
+    oneFoodByNDBNo(ndbNo: string, callback: CallbackErrMapResult): void;
+
+    manyLongDescBySnippets(snippets: string[], callback: CallbackErrMapResult): void;
+}
+
+export interface HandlerWebresponderJSON {
+    success(res: Response, body: { [id: string]: any }): void;
+
+    badRequest(res: Response): void;
 }

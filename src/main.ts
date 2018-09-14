@@ -3,6 +3,7 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import * as routes from "./infrastructure/routes";
 import {HandlerWebservice} from "./interfaces/handler.webservice";
+import {WebresponderJSON} from "./infrastructure/webresponder.json";
 
 
 // Constants
@@ -21,7 +22,8 @@ main.use((req: Request, res: Response, next: NextFunction) => {
     next();
 });
 
-const webservice = new HandlerWebservice();
+const webresponderJSON = new WebresponderJSON();
+const webservice = new HandlerWebservice(webresponderJSON);
 
 routes.initialize(main, webservice);
 
