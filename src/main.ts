@@ -2,6 +2,7 @@ import {NextFunction, Request, Response} from "express";
 import * as express from "express";
 import * as bodyParser from "body-parser";
 import * as routes from "./infrastructure/routes";
+import {HandlerWebservice} from "./interfaces/handler.webservice";
 
 
 // Constants
@@ -20,7 +21,9 @@ main.use((req: Request, res: Response, next: NextFunction) => {
     next();
 });
 
-routes.initialize(main);
+const webservice = new HandlerWebservice();
+
+routes.initialize(main, webservice);
 
 
 main.listen(PORT, HOST, () => console.log(`NutriApp API running on http://${HOST}:${PORT}`));
