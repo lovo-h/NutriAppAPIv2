@@ -1,5 +1,6 @@
 import * as bodyParser from 'body-parser';
 import * as express from 'express';
+import { HandlerLogger } from './infrastructure/handler.logger';
 import * as routes from './infrastructure/routes';
 import { WebresponderJSON } from './infrastructure/webresponder.json';
 import { HandlerWebservice } from './interfaces/handler.webservice';
@@ -20,9 +21,10 @@ main.use((req: express.Request, res: express.Response, next: express.NextFunctio
   next();
 });
 
+const logger = new HandlerLogger();
 const webresponderJSON = new WebresponderJSON();
 const webservice = new HandlerWebservice(webresponderJSON);
 
 routes.initialize(main, webservice);
 
-main.listen(PORT, HOST, () => console.log(`NutriApp API running on http://${HOST}:${PORT}`));
+main.listen(PORT, HOST, () => logger.log(`NutriApp API running on http://${HOST}:${PORT}`));
