@@ -5,11 +5,11 @@
   "private": true,
   "main": "src/main.ts",
   "scripts": {
-    "build": "tsc",
-    "test": "ts-node node_modules/jasmine/bin/jasmine --config=src/jasmine.json",
+    "build": "npm run lint && tsc",
+    "lint": "tslint src/**/*.ts",
     "start": "node src/main.js",
-    "lint": "eslint src",
     "start-dev": "nodemon src/main.js",
+    "test": "ts-node node_modules/jasmine/bin/jasmine --config=src/jasmine.json",
     "watch-ts": "node_modules/typescript/bin/tsc -w",
     "watch-node": "nodemon dist/main.js",
     "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\""
@@ -25,12 +25,11 @@
     "@types/jasmine": "^2.8.8",
     "@types/node": "^10.9.4",
     "concurrently": "^4.0.1",
-    "eslint": "^5.5.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.14.0",
     "jasmine": "^3.2.0",
     "nodemon": "^1.18.4",
     "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "tslint-config-airbnb": "^5.11.0",
     "typescript": "^3.0.3"
   }
 }
