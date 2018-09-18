@@ -2,8 +2,10 @@
   "name": "nutriappapi2",
   "version": "1.0.0",
   "description": "NutriApp Backend",
+  "private": true,
   "main": "src/main.ts",
   "scripts": {
+    "build": "tsc",
     "test": "ts-node node_modules/jasmine/bin/jasmine --config=src/jasmine.json",
     "start": "node src/main.js",
     "lint": "eslint src",
