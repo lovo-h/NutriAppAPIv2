@@ -1,22 +1,21 @@
-import {Request, Response} from "express";
-import {HandlerWebresponderJSON, InteractorFood} from "./protocols";
-
+import { Request, Response } from 'express';
+import { HandlerWebresponderJSON, InteractorFood } from './protocols';
 
 export class HandlerWebservice {
-    interactorFood: InteractorFood;
-    webResponder: HandlerWebresponderJSON;
+  private interactorFood: InteractorFood;
+  private webResponder: HandlerWebresponderJSON;
 
-    constructor(webresponder: HandlerWebresponderJSON) {
-        this.webResponder = webresponder;
-    }
+  constructor(webresponder: HandlerWebresponderJSON) {
+    this.webResponder = webresponder;
+  }
 
-    longDescs(req: Request, res: Response) {
-        let snippet = req.params.snippet;
-        this.webResponder.success(res, {'data': `${snippet}`});
-    }
+  public longDescs(req: Request, res: Response) {
+    const snippet = req.params.snippet;
+    this.webResponder.success(res, { data: `${snippet}` });
+  }
 
-    oneFoodItem(req: Request, res: Response) {
-        let ndbNo = req.params.ndb_no;
-        this.webResponder.success(res, {'data': `${ndbNo}`});
-    }
+  public oneFoodItem(req: Request, res: Response) {
+    const ndbNo = req.params.ndb_no;
+    this.webResponder.success(res, { data: `${ndbNo}` });
+  }
 }

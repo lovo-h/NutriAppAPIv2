@@ -1,13 +1,11 @@
-
 export class InteractorFood {
-    repoFood: RepoFood;
+  private repoFood: IRepoFood;
 
+  public oneFoodByNDBNo(ndbNo: string, callback: CallbackErrMapResult): void {
+    this.repoFood.oneFoodByNDBNo(ndbNo, callback);
+  }
 
-    oneFoodByNDBNo(ndbNo: string, callback: CallbackErrMapResult): void {
-        this.repoFood.oneFoodByNDBNo(ndbNo, callback);
-    }
-
-    manyLongDescBySnippets(snippets: string[], callback: CallbackErrMapResult): void {
-        this.repoFood.manyLongDescBySnippets(snippets, callback);
-    }
+  public manyLongDescBySnippets(snippets: string[], callback: CallbackErrMapResult): void {
+    this.repoFood.manyLongDescBySnippets(snippets, callback);
+  }
 }

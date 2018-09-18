@@ -1,17 +1,17 @@
-import {Response} from "express";
+import { Response } from 'express';
 
 export class WebresponderJSON {
 
-    _jsonResponse(res: Response, body: { [id: string]: any }) {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify(body));
-    }
+  public success(res: Response, body: { [id: string]: any }) {
+    this.jsonResponse(res, body);
+  }
 
-    success(res: Response, body: { [id: string]: any }) {
-        this._jsonResponse(res, body);
-    }
+  public badRequest(res: Response) {
+    this.jsonResponse(res, { error: 'bad request sent' });
+  }
 
-    badRequest(res: Response) {
-        this._jsonResponse(res, {'error': 'bad request sent'})
-    }
+  private jsonResponse(res: Response, body: { [id: string]: any }) {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify(body));
+  }
 }

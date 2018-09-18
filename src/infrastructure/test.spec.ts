@@ -1,18 +1,15 @@
-
-
-const router = require('./routes');
-const express = require('express');
-
+import * as express from 'express';
+import { initialize } from './routes';
 
 describe('Example Test', () => {
-    it('should run a test', function (done) {
-        let app = express();
-        router.initialize(app);
+  it('should run a test', (done) => {
+    const app = express.default();
+    initialize(app, null);
 
-        // console.log(app._router.stack);
+    // console.log(app._router.stack);
 
-        let simpleMath = 10 + 5;
-        expect(simpleMath).toEqual(15);
-        done();
-    });
+    const simpleMath = 10 + 5;
+    expect(simpleMath).toEqual(15);
+    done();
+  });
 });
