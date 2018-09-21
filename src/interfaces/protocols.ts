@@ -5,10 +5,10 @@ export interface IHandlerDB {
   query(queryStr: string): void;
 }
 
-  oneFoodByNDBNo(ndbNo: string, callback: CallbackErrMapResult): void;
 export interface IInteractorFood {
+  oneFoodByNDBNo(ndbNo: string, callback: CallbackResultErr): void;
 
-  manyLongDescBySnippets(snippets: string[], callback: CallbackErrMapResult): void;
+  manyLongDescBySnippets(snippets: string[], callback: CallbackResultErr): void;
 }
 
 export interface IHandlerWebresponderJSON {

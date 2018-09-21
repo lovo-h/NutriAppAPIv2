@@ -1,11 +1,17 @@
 export class InteractorFood {
   private repoFood: IRepoFood;
+  private logger: IHandlerLogger;
 
-  public oneFoodByNDBNo(ndbNo: string, callback: CallbackErrMapResult): void {
-    this.repoFood.oneFoodByNDBNo(ndbNo, callback);
+  constructor(repoFood: IRepoFood, logger: IHandlerLogger) {
+    this.repoFood = repoFood;
+    this.logger = logger;
   }
 
-  public manyLongDescBySnippets(snippets: string[], callback: CallbackErrMapResult): void {
+  public oneFoodByNDBNo(ndbNo: string, callback: CallbackResultErr) {
+    // TODO: implement
+  }
+
+  public manyLongDescBySnippets(snippets: string[], callback: CallbackResultErr) {
     this.repoFood.manyLongDescBySnippets(snippets, callback);
   }
 }

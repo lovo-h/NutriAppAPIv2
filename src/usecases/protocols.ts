@@ -1,9 +1,9 @@
-type CallbackErrMapResult = (err: Error, result: { [id: string]: string }) => void;
+type CallbackResultErr = (results: any[], err: Error) => void;
 
 interface IRepoFood {
-  oneFoodByNDBNo(ndbNo: string, callback: CallbackErrMapResult): void;
+  oneFoodByNDBNo(ndbNo: string, callback: CallbackResultErr): void;
 
-  manyLongDescBySnippets(snippets: string[], callback: CallbackErrMapResult): void;
+  manyLongDescBySnippets(snippets: string[], callback: CallbackResultErr): void;
 }
 
 interface IHandlerLogger {
