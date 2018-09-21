@@ -1,11 +1,12 @@
 import { Request, Response } from 'express';
-import { IHandlerWebresponderJSON, InteractorFood } from './protocols';
+import { IHandlerWebresponderJSON, IInteractorFood } from './protocols';
 
 export class HandlerWebservice {
-  private interactorFood: InteractorFood;
+  private interactorFood: IInteractorFood;
   private webResponder: IHandlerWebresponderJSON;
 
-  constructor(webresponder: IHandlerWebresponderJSON) {
+  constructor(webresponder: IHandlerWebresponderJSON, interactorFood: IInteractorFood) {
+    this.interactorFood = interactorFood;
     this.webResponder = webresponder;
   }
 

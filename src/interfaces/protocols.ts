@@ -5,8 +5,8 @@ export interface IHandlerDB {
   query(queryStr: string): void;
 }
 
-export interface InteractorFood {
   oneFoodByNDBNo(ndbNo: string, callback: CallbackErrMapResult): void;
+export interface IInteractorFood {
 
   manyLongDescBySnippets(snippets: string[], callback: CallbackErrMapResult): void;
 }

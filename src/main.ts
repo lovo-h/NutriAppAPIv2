@@ -4,6 +4,7 @@ import { HandlerLogger } from './infrastructure/handler.logger';
 import * as routes from './infrastructure/routes';
 import { WebresponderJSON } from './infrastructure/webresponder.json';
 import { HandlerWebservice } from './interfaces/handler.webservice';
+import { InteractorFood } from './usecases/interactor.food';
 
 // Constants
 const PORT = 8080;
