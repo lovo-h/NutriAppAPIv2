@@ -2,7 +2,7 @@ import { Response } from 'express';
 
 export interface IHandlerDB {
   // TODO: maybe add params && callback function?
-  query(queryStr: string): void;
+  query(queryStr: string, params: any[], callback: CallbackResultErr): void;
 }
 
 export interface IInteractorFood {
