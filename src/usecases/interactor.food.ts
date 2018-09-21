@@ -12,11 +12,11 @@ export class InteractorFood {
   }
 
   public manyLongDescBySnippets(snippets: string[], callback: CallbackResultErr) {
-    this.logger.log(`InteractorFood.manyLongDescBySnippets: ${snippets}`);
+    this.logger.info(`InteractorFood.manyLongDescBySnippets: ${snippets}`);
 
     if (snippets === undefined || snippets === null || snippets.length === 0) {
       const errMsg = 'snippets needs at least one element';
-      this.logger.log(`InteractorFood.manyLongDescBySnippets.Error: ${errMsg}`);
+      this.logger.error(`InteractorFood.manyLongDescBySnippets.Error: ${errMsg}`);
       callback(undefined, new Error(errMsg));
       return;
     }

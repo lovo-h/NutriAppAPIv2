@@ -7,5 +7,6 @@ interface IRepoFood {
 }
 
 interface IHandlerLogger {
-  log(msg: string): void;
+  info(logMessage: string): void;
+  error(logMessage: string): void;
 }
