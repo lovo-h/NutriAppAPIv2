@@ -12,11 +12,18 @@ export class HandlerWebservice {
 
   public longDescs(req: Request, res: Response) {
     const snippet = req.params.snippet;
-    this.webResponder.success(res, { data: `${snippet}` });
+    const snippets: string[] = snippet.split('_');
+    this.interactorFood.manyLongDescBySnippets(snippets, (results: any[], err: Error) => {
+      if (err !== undefined) {
+        this.webResponder.badRequest(res);
+        return;
+      }
+
+      this.webResponder.success(res, { data: results });
+    });
   }
 
   public oneFoodItem(req: Request, res: Response) {
-    const ndbNo = req.params.ndb_no;
-    this.webResponder.success(res, { data: `${ndbNo}` });
+    // TODO: implement
   }
 }
