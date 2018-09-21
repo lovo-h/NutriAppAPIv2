@@ -1,9 +1,11 @@
 import * as bodyParser from 'body-parser';
 import * as express from 'express';
+import { newHandlerCockroach } from './infrastructure/handler.cockroach';
 import { HandlerLogger } from './infrastructure/handler.logger';
 import * as routes from './infrastructure/routes';
 import { WebresponderJSON } from './infrastructure/webresponder.json';
 import { HandlerWebservice } from './interfaces/handler.webservice';
+import { RepoFood } from './interfaces/repo.food';
 import { InteractorFood } from './usecases/interactor.food';
 
 // Constants
@@ -23,9 +25,34 @@ main.use((req: express.Request, res: express.Response, next: express.NextFunctio
 });
 
 const logger = new HandlerLogger();
+const cockroachDB = newHandlerCockroach();
+const repoFood = new RepoFood(cockroachDB);
+const interactorFood = new InteractorFood(repoFood, logger);
 const webresponderJSON = new WebresponderJSON();
-const webservice = new HandlerWebservice(webresponderJSON);
+const webservice = new HandlerWebservice(webresponderJSON, interactorFood);
 
 routes.initialize(main, webservice);
 
-main.listen(PORT, HOST, () => logger.log(`NutriApp API running on http://${HOST}:${PORT}`));
+const server = main.listen(PORT, HOST, () =>
+  logger.log(`NutriApp API running on http://${HOST}:${PORT}`));
+
+const gracefulShutdown = () => {
+  server.close(() => {
+    logger.log('Closed out remaining connections');
+    cockroachDB.end();
+    process.exit();
+  });
+
+  const second = 1000;
+
+  setTimeout(() => {
+    logger.log('Failed to close down connections in time, forcefully shutting down');
+    cockroachDB.end();
+    process.exit();
+  },         10 * second);
+};
+
+// listen for TERM signal .e.g. kill
+process.on('SIGTERM', gracefulShutdown);
+// listen for INT signal e.g. Ctrl-C
+process.on('SIGINT', gracefulShutdown);
